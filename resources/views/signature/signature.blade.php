@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
+
 <head>
     <title>Laravel Signature Pad Tutorial Example - ItSolutionStuff.com </title>
     <link rel="stylesheet" type="text/css"
@@ -44,7 +45,7 @@
                             <strong>{{ $message }}</strong>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('signature.store') }}">
+                        <form method="POST" action="{{ route('signature.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-12">
                                 <label class="" for="">Signature:</label>
@@ -52,7 +53,8 @@
                                 <div id="sig"></div>
                                 <br />
                                 <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                                <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                <textarea id="signature64" name="signed" style="display: none"
+                                    name="signature64"></textarea>
                             </div>
                             <br />
                             <button class="btn btn-success">Save</button>

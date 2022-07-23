@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Signature;
 
 use App\Http\Controllers\Controller;
+use App\Models\Signature;
 use Illuminate\Http\Request;
 
 class SignatureController extends Controller
@@ -35,7 +36,16 @@ class SignatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $folderPath = public_path('/');
+        $image = explode(";base64,", $request->signed);
+        $image_type = explode("/", $image[0]);
+        $image_type_png = $image_type[1];
+        $image_base64 = base64_decode($image[1]);
+        $file = $folderPath . uniqid() . '.'.$image_type_png;
+        // dd($file);
+        file_put_contents($file, $image_base64);
+        return back()->with('success', 'Signature store successfully !!');
+
     }
 
     /**
