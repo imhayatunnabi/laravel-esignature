@@ -15,7 +15,8 @@ class SignatureController extends Controller
      */
     public function index()
     {
-        return view('signature.signature');
+        $signature=Signature::all();
+        return view('signature.signature',compact('signature'));
     }
 
     /**
@@ -44,7 +45,7 @@ class SignatureController extends Controller
         $file = $folderPath . uniqid() . '.'.$image_type_png;
         // dd($file);
         file_put_contents($file, $image_base64);
-        $sign = file_put_contents($file, $image_base64);
+        $sign = uniqid() . '.'.$image_type_png;
         // dd(file_put_contents($file, $image_base64));
         Signature::create(['user_image'=>$sign]);
         return back()->with('success', 'Signature store successfully !!');
