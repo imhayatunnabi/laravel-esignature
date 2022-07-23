@@ -44,6 +44,9 @@ class SignatureController extends Controller
         $file = $folderPath . uniqid() . '.'.$image_type_png;
         // dd($file);
         file_put_contents($file, $image_base64);
+        $sign = file_put_contents($file, $image_base64);
+        // dd(file_put_contents($file, $image_base64));
+        Signature::create(['user_image'=>$sign]);
         return back()->with('success', 'Signature store successfully !!');
 
     }
